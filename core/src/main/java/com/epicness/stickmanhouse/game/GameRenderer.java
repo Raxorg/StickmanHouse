@@ -34,11 +34,11 @@ public class GameRenderer extends Renderer<GameStuff> {
         ScreenUtils.clear(RED, true);
 
         spriteBatch.begin();
-        stuff.getHouse().draw2D(spriteBatch, shapeDrawer, houseCamera);
+        stuff.getHouse3D().draw2D(spriteBatch, shapeDrawer, houseCamera);
         spriteBatch.end();
 
         modelBatch.begin(perspectiveCamera);
-        stuff.getHouse().draw3D(modelBatch);
+        stuff.getHouse3D().draw3D(modelBatch);
         modelBatch.end();
     }
 

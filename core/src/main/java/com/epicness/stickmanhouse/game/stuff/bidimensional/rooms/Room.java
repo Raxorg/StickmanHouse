@@ -1,4 +1,4 @@
-package com.epicness.stickmanhouse.game.stuff.rooms;
+package com.epicness.stickmanhouse.game.stuff.bidimensional.rooms;
 
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.epicness.fundamentals.assets.SharedAssets;

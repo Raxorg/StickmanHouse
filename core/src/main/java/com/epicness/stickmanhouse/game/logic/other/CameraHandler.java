@@ -1,54 +1,90 @@
 package com.epicness.stickmanhouse.game.logic.other;
 
-import com.badlogic.gdx.Input;
+import static com.badlogic.gdx.Input.Keys.F;
+import static com.epicness.fundamentals.constants.SharedConstants.CAMERA_HEIGHT;
+import static com.epicness.fundamentals.constants.SharedConstants.CAMERA_WIDTH;
+import static com.epicness.stickmanhouse.game.constants.GameConstants.PLAYER_STARTING_X;
+
 import com.badlogic.gdx.graphics.PerspectiveCamera;
-import com.badlogic.gdx.graphics.g3d.utils.FirstPersonCameraController;
+import com.badlogic.gdx.math.MathUtils;
+import com.badlogic.gdx.math.Vector2;
+import com.badlogic.gdx.math.Vector3;
 import com.epicness.stickmanhouse.game.logic.GameLogicHandler;
+import com.epicness.stickmanhouse.game.stuff.bidimensional.Player;
 
 public class CameraHandler extends GameLogicHandler {
 
-    private FirstPersonCameraController cameraController;
-    private boolean usingCamera;
+    private PerspectiveCamera camera;
+    private Vector3 cameraDirection;
+    private Vector2 pivot;
+    private boolean free;
+    private Player player;
+    private float lastPlayerX, lastPlayerY, deltaX, deltaY, dragDeltaX, dragDeltaY;
 
     @Override
     protected void init() {
-        PerspectiveCamera camera = renderer.getPerspectiveCamera();
-        camera.near = 0.001f;
-        camera.translate(0f, 0f, 5f);
+        camera = renderer.getPerspectiveCamera();
+        camera.direction.set(0, 0, -1);
+        camera.up.set(0, 1, 0);
+        camera.position.set(0f, 0f, 15f);
         camera.update();
-        cameraController = new FirstPersonCameraController(camera);
+        cameraDirection = new Vector3();
+
+        pivot = new Vector2();
+        free = false;
+        player = stuff.getHouse3D().getHouse2D().getPlayer();
+        lastPlayerX = PLAYER_STARTING_X;
+        deltaX = deltaY = dragDeltaX = dragDeltaY = 0f;
     }
 
     @Override
-    protected void update(float delta) {
-        if (!usingCamera) return;
-        cameraController.update();
+    public void update(float delta) {
+        deltaX = player.getX() - lastPlayerX;
+        rotateX(deltaX);
+
+        deltaY = lastPlayerY - player.getY();
+        deltaY = MathUtils.map(0f, CAMERA_HEIGHT, 0f, 45f, deltaY);
+        cameraDirection.set(camera.direction);
+        camera.rotateAround(Vector3.Zero, cameraDirection.crs(Vector3.Y), deltaY);
+        camera.update();
+
+        lastPlayerX = player.getX();
+        lastPlayerY = player.getY();
     }
 
-    @Override
-    public void keyDown(int keycode) {
-        if (!usingCamera) return;
-        cameraController.keyDown(keycode);
-    }
-
-    @Override
-    public void keyUp(int keycode) {
-        cameraController.keyUp(keycode);
+    private void rotateX(float delta) {
+        delta = MathUtils.map(0f, CAMERA_WIDTH, 0f, 45f, delta);
+        camera.rotateAround(Vector3.Zero, Vector3.Y, delta);
     }
 
     @Override
     public void touchDown(float x, float y, int button) {
-        if (button == Input.Buttons.RIGHT) usingCamera = true;
+        if (!free) return;
+        pivot.set(x, y);
     }
 
     @Override
     public void touchDragged(float x, float y) {
-        if (!usingCamera) return;
-        cameraController.touchDragged((int) x, (int) y, 0);
+        if (!free) return;
+
+        dragDeltaX = MathUtils.clamp(pivot.x - x, -10f, 10f) / 3f;
+        dragDeltaY = MathUtils.clamp(y - pivot.y, -10f, 10f) / 3f;
+
+        camera.rotateAround(Vector3.Zero, Vector3.Y, dragDeltaX);
+        cameraDirection.set(camera.direction);
+        camera.rotateAround(Vector3.Zero, cameraDirection.crs(Vector3.Y), dragDeltaY);
+        if (camera.direction.y < -0.9f || camera.direction.y > 0.9f) {
+            camera.rotateAround(Vector3.Zero, Vector3.Y, -dragDeltaX);
+            camera.rotateAround(Vector3.Zero, cameraDirection, -dragDeltaY);
+        }
+        camera.update();
+        pivot.set(x, y);
     }
 
     @Override
-    public void touchUp(float x, float y) {
-        usingCamera = false;
+    public void keyDown(int keycode) {
+        if (keycode == F) {
+            free = !free;
+        }
     }
 }

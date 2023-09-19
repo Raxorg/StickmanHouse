@@ -13,7 +13,7 @@ public class GameStuff extends Stuff<GameAssets> {
         house3D = new House3D(sharedAssets, assets);
     }
 
-    public House3D getHouse() {
+    public House3D getHouse3D() {
         return house3D;
     }
 }
