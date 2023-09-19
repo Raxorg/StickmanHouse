@@ -11,7 +11,7 @@ import com.badlogic.gdx.graphics.g3d.ModelBatch;
 import com.badlogic.gdx.graphics.glutils.FrameBuffer;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.epicness.fundamentals.renderer.ShapeDrawerPlus;
-import com.epicness.fundamentals.stuff.shapes.bidimensional.Screen2D;
+import com.epicness.fundamentals.stuff.shapes.bidimensional.Drawable2D;
 
 public class Screen3D<S extends Shape3D<?, ?>> {
 
@@ -19,9 +19,9 @@ public class Screen3D<S extends Shape3D<?, ?>> {
     public final float offsetX2D, offsetY2D, cameraX, cameraY;
     private final FrameBuffer frameBuffer;
     private final Sprite bufferSprite;
-    private Screen2D screen2D;
+    private Drawable2D drawable2D;
 
-    public Screen3D(S shape, float offsetX2D, float offsetY2D, float cameraWidth, float cameraHeight, Screen2D screen2D) {
+    public Screen3D(S shape, float offsetX2D, float offsetY2D, float cameraWidth, float cameraHeight, Drawable2D drawable2D) {
         this.shape = shape;
         this.offsetX2D = offsetX2D;
         this.offsetY2D = offsetY2D;
@@ -30,7 +30,7 @@ public class Screen3D<S extends Shape3D<?, ?>> {
         frameBuffer = new FrameBuffer(Pixmap.Format.RGBA8888, Gdx.graphics.getWidth(), Gdx.graphics.getHeight(), false);
         bufferSprite = new Sprite();
         bufferSprite.setSize(cameraWidth, cameraHeight);
-        this.screen2D = screen2D;
+        this.drawable2D = drawable2D;
     }
 
     public Screen3D(S shape, float offsetX2D, float offsetY2D, float cameraWidth, float cameraHeight) {
@@ -39,7 +39,7 @@ public class Screen3D<S extends Shape3D<?, ?>> {
 
     public final void draw2D(SpriteBatch spriteBatch, ShapeDrawerPlus shapeDrawer, OrthographicCamera camera) {
         begin(spriteBatch, shapeDrawer, camera);
-        screen2D.draw(spriteBatch, shapeDrawer);
+        drawable2D.draw(spriteBatch, shapeDrawer);
         end(spriteBatch);
     }
 
@@ -75,7 +75,7 @@ public class Screen3D<S extends Shape3D<?, ?>> {
         return shape;
     }
 
-    public void setScreen2D(Screen2D screen2D) {
-        this.screen2D = screen2D;
+    public void setScreen2D(Drawable2D drawable2D) {
+        this.drawable2D = drawable2D;
     }
 }

@@ -1,8 +1,9 @@
-package com.epicness.stickmanhouse.game.logic;
+package com.epicness.stickmanhouse.game.logic.other;
 
 import com.badlogic.gdx.Input;
 import com.badlogic.gdx.graphics.PerspectiveCamera;
 import com.badlogic.gdx.graphics.g3d.utils.FirstPersonCameraController;
+import com.epicness.stickmanhouse.game.logic.GameLogicHandler;
 
 public class CameraHandler extends GameLogicHandler {
 

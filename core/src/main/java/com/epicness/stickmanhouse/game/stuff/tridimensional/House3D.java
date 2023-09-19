@@ -1,4 +1,4 @@
-package com.epicness.stickmanhouse.game.stuff;
+package com.epicness.stickmanhouse.game.stuff.tridimensional;
 
 import static com.epicness.fundamentals.constants.SharedConstants.CAMERA_HEIGHT;
 import static com.epicness.fundamentals.constants.SharedConstants.CAMERA_WIDTH;
@@ -12,42 +12,44 @@ import com.epicness.fundamentals.stuff.shapes.tridimensional.Screen3D;
 import com.epicness.fundamentals.stuff.shapes.tridimensional.cylinder.Cylinder;
 import com.epicness.fundamentals.stuff.shapes.tridimensional.plane.Plane;
 import com.epicness.stickmanhouse.game.assets.GameAssets;
-import com.epicness.stickmanhouse.game.stuff.rooms.LivingRoom;
+import com.epicness.stickmanhouse.game.stuff.bidimensional.House2D;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class House {
+public class House3D {
 
     private final List<Screen3D<Plane>> planeScreens;
     private final List<Screen3D<Cylinder>> cylinderScreens;
+    private final House2D house2D;
 
-    public House(SharedAssets sharedAssets, GameAssets assets) {
+    public House3D(SharedAssets sharedAssets, GameAssets assets) {
         planeScreens = new ArrayList<>();
         cylinderScreens = new ArrayList<>();
-        spawnWalls(sharedAssets, assets);
-        spawnCorners(sharedAssets, assets);
+        house2D = new House2D(sharedAssets, assets);
+        spawnWalls();
+        spawnCorners();
     }
 
-    private void spawnWalls(SharedAssets sharedAssets, GameAssets assets) {
+    private void spawnWalls() {
         for (int i = 0; i < 8; i += 2) {
             Screen3D<Plane> plane = new Screen3D<>(
                 new Plane(5f, 3f),
                 i * CAMERA_WIDTH, 0f,
                 CAMERA_WIDTH, CAMERA_HEIGHT);
-            plane.setScreen2D(new LivingRoom(sharedAssets, assets));
+            plane.setScreen2D(house2D);
             planeScreens.add(plane);
         }
 
     }
 
-    private void spawnCorners(SharedAssets sharedAssets, GameAssets assets) {
+    private void spawnCorners() {
         for (int i = 1; i < 8; i += 2) {
             Screen3D<Cylinder> cylinder = new Screen3D<>(
                 new Cylinder(5f, 3f, 5f, 90f),
                 i * CAMERA_WIDTH, 0f,
                 CAMERA_WIDTH, CAMERA_HEIGHT);
-            cylinder.setScreen2D(new LivingRoom(sharedAssets, assets));
+            cylinder.setScreen2D(house2D);
             cylinderScreens.add(cylinder);
         }
     }

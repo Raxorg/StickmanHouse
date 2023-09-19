@@ -2,17 +2,18 @@ package com.epicness.stickmanhouse.game.stuff;
 
 import com.epicness.fundamentals.stuff.Stuff;
 import com.epicness.stickmanhouse.game.assets.GameAssets;
+import com.epicness.stickmanhouse.game.stuff.tridimensional.House3D;
 
 public class GameStuff extends Stuff<GameAssets> {
 
-    private House house;
+    private House3D house3D;
 
     @Override
     public void initializeStuff() {
-        house = new House(sharedAssets, assets);
+        house3D = new House3D(sharedAssets, assets);
     }
 
-    public House getHouse() {
-        return house;
+    public House3D getHouse() {
+        return house3D;
     }
 }

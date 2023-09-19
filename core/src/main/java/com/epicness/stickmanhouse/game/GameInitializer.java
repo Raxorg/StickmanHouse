@@ -7,7 +7,7 @@ import com.epicness.stickmanhouse.game.stuff.GameStuff;
 
 public class GameInitializer extends Initializer<GameAssets, GameRenderer, GameStuff> {
 
-    public GameInitializer() {
-        super(new GameAssets(), new GameLogic(), new GameRenderer(), new GameStuff());
+    public GameInitializer(GameAssets assets) {
+        super(assets, new GameLogic(), new GameRenderer(), new GameStuff());
     }
 }
