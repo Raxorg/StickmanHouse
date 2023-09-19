@@ -5,8 +5,14 @@ import com.epicness.stickmanhouse.game.assets.GameAssets;
 
 public class GameStuff extends Stuff<GameAssets> {
 
+    private House house;
+
     @Override
     public void initializeStuff() {
+        house = new House(sharedAssets, assets);
+    }
 
+    public House getHouse() {
+        return house;
     }
 }

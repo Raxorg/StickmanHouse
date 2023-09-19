@@ -1,4 +1,4 @@
-package com.epicness.stickmanhouse.game;
+package com.epicness.stickmanhouse.game.logic;
 
 import com.epicness.fundamentals.logic.Logic;
 

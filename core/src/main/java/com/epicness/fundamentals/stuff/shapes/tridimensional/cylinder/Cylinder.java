@@ -8,6 +8,10 @@ public class Cylinder extends Shape3D<CylinderCreator, CylinderProperties> {
         super(creator);
     }
 
+    public Cylinder(float width, float height, float depth, float angleTo) {
+        super(new CylinderCreator(width, height, depth, angleTo));
+    }
+
     @Override
     protected void updateDebugLines() {
         for (index = 0; index < rotationVertices.length / 2; index++) {
