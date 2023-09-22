@@ -12,6 +12,7 @@ import com.epicness.stickmanhouse.game.logic.player.movement.FallingHandler;
 import com.epicness.stickmanhouse.game.logic.player.movement.IdleHandler;
 import com.epicness.stickmanhouse.game.logic.player.movement.MovementHandler;
 import com.epicness.stickmanhouse.game.logic.player.movement.RunningHandler;
+import com.epicness.stickmanhouse.game.logic.rooms.FlameHandler;
 
 public class GameLogic extends Logic {
 
@@ -20,6 +21,8 @@ public class GameLogic extends Logic {
     // Player
     private final LadderDetector ladderDetector;
     private final PlatformDetector platformDetector;
+    // Rooms
+    private final FlameHandler flameHandler;
     // Other
     private final CameraHandler cameraHandler;
     private final WorldCornerHandler worldCornerHandler;
@@ -35,6 +38,8 @@ public class GameLogic extends Logic {
         registerHandler(new IdleHandler());
         registerHandler(movementHandler = new MovementHandler());
         registerHandler(new RunningHandler());
+        // Rooms
+        registerHandler(flameHandler = new FlameHandler());
         // Other
         registerHandler(cameraHandler = new CameraHandler());
         registerHandler(0, new KeyHandler());
@@ -48,6 +53,8 @@ public class GameLogic extends Logic {
         // Player
         ladderDetector.update();
         platformDetector.update();
+        // Rooms
+        flameHandler.update();
         // Other
         cameraHandler.update();
         worldCornerHandler.update();

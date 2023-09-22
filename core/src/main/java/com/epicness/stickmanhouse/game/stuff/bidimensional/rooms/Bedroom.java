@@ -9,14 +9,14 @@ import com.epicness.fundamentals.renderer.ShapeDrawerPlus;
 import com.epicness.fundamentals.stuff.Sprited;
 import com.epicness.stickmanhouse.game.assets.GameAssets;
 
-public class Kitchen extends Room {
+public class Bedroom extends Room {
 
     private final Sprited background;
 
-    public Kitchen(SharedAssets sharedAssets, GameAssets assets) {
-        super(sharedAssets, assets, 2);
+    public Bedroom(SharedAssets sharedAssets, GameAssets assets) {
+        super(sharedAssets, assets, 6);
 
-        background = new Sprited(assets.getKitchen());
+        background = new Sprited(assets.getBedroom());
         background.setX(CAMERA_WIDTH * number);
         background.setSize(CAMERA_WIDTH, CAMERA_HEIGHT);
     }

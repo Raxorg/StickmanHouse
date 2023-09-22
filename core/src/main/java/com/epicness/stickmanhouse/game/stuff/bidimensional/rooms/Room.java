@@ -9,10 +9,12 @@ public abstract class Room {
 
     protected SharedAssets sharedAssets;
     protected GameAssets assets;
+    protected int number;
 
-    public Room(SharedAssets sharedAssets, GameAssets assets) {
+    public Room(SharedAssets sharedAssets, GameAssets assets, int number) {
         this.sharedAssets = sharedAssets;
         this.assets = assets;
+        this.number = number;
     }
 
     public abstract void draw(SpriteBatch spriteBatch, ShapeDrawerPlus shapeDrawer);

@@ -38,4 +38,6 @@ public class GameConstants {
     public static final float PLAYER_RUNNING_SPEED = 1200f;
     public static final float PLAYER_CLIMBING_SPEED = PLAYER_RUNNING_SPEED / 2f;
     public static final float GRAVITY = -1000f;
+
+    public static final float FLAME_SIZE = CAMERA_HEIGHT / 5f;
 }

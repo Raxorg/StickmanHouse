@@ -1,6 +1,6 @@
 package com.epicness.stickmanhouse.game;
 
-import static com.badlogic.gdx.graphics.Color.RED;
+import static com.badlogic.gdx.graphics.Color.CLEAR;
 import static com.epicness.fundamentals.constants.SharedConstants.CAMERA_HEIGHT;
 import static com.epicness.fundamentals.constants.SharedConstants.CAMERA_WIDTH;
 
@@ -31,7 +31,7 @@ public class GameRenderer extends Renderer<GameStuff> {
 
     @Override
     public void render() {
-        ScreenUtils.clear(RED, true);
+        ScreenUtils.clear(CLEAR, true);
 
         spriteBatch.begin();
         stuff.getHouse3D().draw2D(spriteBatch, shapeDrawer, houseCamera);

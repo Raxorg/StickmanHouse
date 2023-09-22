@@ -9,20 +9,20 @@ import com.epicness.fundamentals.renderer.ShapeDrawerPlus;
 import com.epicness.fundamentals.stuff.Sprited;
 import com.epicness.stickmanhouse.game.assets.GameAssets;
 
-public class Kitchen extends Room {
+public class Hallway3 extends Room {
 
-    private final Sprited background;
+    private final Sprited dinoFrame;
 
-    public Kitchen(SharedAssets sharedAssets, GameAssets assets) {
-        super(sharedAssets, assets, 2);
+    public Hallway3(SharedAssets sharedAssets, GameAssets assets) {
+        super(sharedAssets, assets, 5);
 
-        background = new Sprited(assets.getKitchen());
-        background.setX(CAMERA_WIDTH * number);
-        background.setSize(CAMERA_WIDTH, CAMERA_HEIGHT);
+        dinoFrame = new Sprited(assets.getDinoFrame());
+        dinoFrame.setX(CAMERA_WIDTH * 5.5f - dinoFrame.getWidth() / 2f);
+        dinoFrame.setY(CAMERA_HEIGHT * 0.5f);
     }
 
     @Override
     public void draw(SpriteBatch spriteBatch, ShapeDrawerPlus shapeDrawer) {
-        background.draw(spriteBatch);
+        dinoFrame.draw(spriteBatch);
     }
 }

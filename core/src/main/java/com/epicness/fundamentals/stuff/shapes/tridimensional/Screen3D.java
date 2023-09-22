@@ -1,8 +1,12 @@
 package com.epicness.fundamentals.stuff.shapes.tridimensional;
 
 import static com.badlogic.gdx.graphics.Color.CLEAR;
+import static com.badlogic.gdx.graphics.GL20.GL_ONE;
+import static com.badlogic.gdx.graphics.GL20.GL_ONE_MINUS_SRC_ALPHA;
+import static com.badlogic.gdx.graphics.GL20.GL_SRC_ALPHA;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.g2d.Sprite;
@@ -39,7 +43,9 @@ public class Screen3D<S extends Shape3D<?, ?>> {
 
     public final void draw2D(SpriteBatch spriteBatch, ShapeDrawerPlus shapeDrawer, OrthographicCamera camera) {
         begin(spriteBatch, shapeDrawer, camera);
+        spriteBatch.setBlendFunctionSeparate(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA, GL_ONE, GL_ONE);
         drawable2D.draw(spriteBatch, shapeDrawer);
+        spriteBatch.setBlendFunction(GL20.GL_SRC_ALPHA, GL20.GL_ONE_MINUS_SRC_ALPHA);
         end(spriteBatch);
     }
 

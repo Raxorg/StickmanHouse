@@ -26,7 +26,7 @@ public class CameraHandler extends GameLogicHandler {
         camera = renderer.getPerspectiveCamera();
         camera.direction.set(0, 0, -1);
         camera.up.set(0, 1, 0);
-        camera.position.set(0f, 0f, 15f);
+        camera.position.set(0f, 0f, 15.5f);
         camera.update();
         cameraDirection = new Vector3();
 

@@ -14,7 +14,7 @@ public class LivingRoom extends Room {
     private final Sprited background;
 
     public LivingRoom(SharedAssets sharedAssets, GameAssets assets) {
-        super(sharedAssets, assets);
+        super(sharedAssets, assets, 0);
 
         background = new Sprited(assets.getLivingRoom());
         background.setSize(CAMERA_WIDTH, CAMERA_HEIGHT);

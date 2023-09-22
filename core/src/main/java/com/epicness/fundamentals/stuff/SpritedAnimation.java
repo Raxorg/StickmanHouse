@@ -10,8 +10,9 @@ import com.badlogic.gdx.math.Rectangle;
 import com.epicness.fundamentals.renderer.ShapeDrawerPlus;
 import com.epicness.fundamentals.stuff.interfaces.Buttonable;
 import com.epicness.fundamentals.stuff.interfaces.Movable;
+import com.epicness.fundamentals.stuff.interfaces.Rotatable;
 
-public class SpritedAnimation implements Buttonable, Movable {
+public class SpritedAnimation implements Buttonable, Movable, Rotatable {
 
     private final Animation<Sprited> animation;
     private float time;
@@ -74,6 +75,18 @@ public class SpritedAnimation implements Buttonable, Movable {
     public void translateY(float amount) {
         for (int i = 0; i < animation.getKeyFrames().length; i++) {
             animation.getKeyFrames()[i].translateY(amount);
+        }
+    }
+
+    @Override
+    public float getRotation() {
+        return animation.getKeyFrame(time).getRotation();
+    }
+
+    @Override
+    public void rotate(float degrees) {
+        for (int i = 0; i < animation.getKeyFrames().length; i++) {
+            animation.getKeyFrames()[i].rotate(degrees);
         }
     }
 

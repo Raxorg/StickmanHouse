@@ -8,6 +8,7 @@ import static com.epicness.stickmanhouse.game.constants.GameConstants.DECAL_SCRE
 import static com.epicness.stickmanhouse.game.constants.GameConstants3D.CYLINDER_DIAMETER;
 import static com.epicness.stickmanhouse.game.constants.GameConstants3D.CYLINDER_RADIUS;
 
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g3d.ModelBatch;
